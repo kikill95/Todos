@@ -2,14 +2,14 @@
 /*------------------------------RESET DEFAULT STYLES--------------------------------*/
 /*----------------------------------------------------------------------------------*/
 html,body                       { width:100%; height:100%; }
-body                            { padding:0; margin:0; font:12px Tahoma, sans-serif; background:#fff; color:#000; }
+body                            { padding:0; margin:0; font:16px Tahoma, sans-serif; background:#fff; color:#000; }
 div,p,a,span,em,strong,img,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,td,tr,form,fieldset,label,select,checkbox,input,textarea {
 	padding:0;
 	margin:0;
 	outline:none;
 	list-style:none;
 }
-select, input, textarea        { font-size:12px; vertical-align:middle; }
+select, input, textarea        { font-size:16px; vertical-align:middle; }
 textarea                       { vertical-align:top; }
 :focus                         { outline:none; }
 input[type=submit]             { cursor:pointer; }
@@ -20,3 +20,50 @@ a:hover                        { text-decoration:none; }
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------MAIN PART-------------------------------------*/
 /*----------------------------------------------------------------------------------*/
+.wrapper {
+    margin: 120px;
+}
+.wrapper li {
+    display: block;
+    width: 320px;
+    margin: 5px auto;
+    padding: 2px;
+}
+.wrapper .preparing-to-delete {
+    width: 20px;
+    height: 20px;
+    margin-top: 22px;
+    float: left;
+}
+.wrapper .delete {
+    margin-top: 17px;
+    float: right;
+    font-size: 20px;
+}
+.wrapper li > p {
+    display: inline-block;
+    width: 238px;
+    height: 34px;
+    padding: 10px;
+    margin: 2px;
+    overflow: auto;
+    border: 3px inset #198cff;
+    border-radius: 2px;
+}
+.wrapper li > input {
+    width: 30px;
+}
+.wrapper form > input {
+    display: block;
+    width: 220px;
+    margin: 5px auto;
+    padding: 10px;
+}
+#creating {
+    border: 3px inset #198cff;
+    border-radius: 10px;
+}
+#deletion {
+    border: 3px inset #004f9f;
+    border-radius: 5px;
+}
