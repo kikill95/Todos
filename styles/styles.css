@@ -23,24 +23,48 @@ a:hover                        { text-decoration:none; }
 .wrapper {
     margin: 120px;
 }
-.wrapper li {
+#creating {
+    border: 3px inset #198cff;
+    border-radius: 10px;
+}
+#new-li {
+    width: 120px;
+    height: 30px;
+    padding: 0;
+    border-color: greenyellow;
+}
+li {
     display: block;
-    width: 320px;
+    width: 350px;
     margin: 5px auto;
     padding: 2px;
 }
-.wrapper .preparing-to-delete {
+.marked {
+    color: grey;
+    border-color: ghostwhite;
+    background-color: lightblue;
+}
+.mark-done {
+    width: 20px;
+    height: 20px;
+    margin: 22px 5px 0 0;
+    float: left;
+    border: 3px solid yellowgreen;
+    border-radius: 3px;
+}
+.preparing-to-delete {
     width: 20px;
     height: 20px;
     margin-top: 22px;
     float: left;
 }
-.wrapper .delete {
+.delete {
     margin-top: 17px;
     float: right;
     font-size: 20px;
+    border-color: red;
 }
-.wrapper li > p {
+li > p {
     display: inline-block;
     width: 238px;
     height: 34px;
@@ -50,18 +74,14 @@ a:hover                        { text-decoration:none; }
     border: 3px inset #198cff;
     border-radius: 2px;
 }
-.wrapper li > input {
+li > input {
     width: 30px;
 }
-.wrapper form > input {
+form > input {
     display: block;
     width: 220px;
     margin: 5px auto;
     padding: 10px;
-}
-#creating {
-    border: 3px inset #198cff;
-    border-radius: 10px;
 }
 #deletion {
     border: 3px inset #004f9f;
