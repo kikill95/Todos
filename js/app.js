@@ -1,5 +1,6 @@
+//Deletee all selected
 function deleteAllSelected() {
-    var element = document.getElementById("todos-list");
+    var element = document.getElementById("maden-todos");
 
     while (document.querySelector(":checked") !== null) {
         element.removeChild(document.querySelector(":checked").parentNode);
