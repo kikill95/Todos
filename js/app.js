@@ -12,6 +12,7 @@ function newLi() {
     check.type = 'checkbox';
     check.className = 'preparing-to-delete';
     p.innerHTML = document.getElementById('creating').value;
+    document.getElementById('creating').value = '';
     mark.addEventListener('click', function (event) {
         var target = event.target,
             p = target.parentNode.getElementsByTagName('p')[0];
