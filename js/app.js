@@ -11,11 +11,11 @@ function newLi() {
     mark.className = 'mark-done';
     check.type = 'checkbox';
     check.className = 'preparing-to-delete';
-    p.innerHTML = document.getElementById('creating').value;
+    p.textContent = document.getElementById('creating').value;
     document.getElementById('creating').value = '';
     mark.addEventListener('click', function (event) {
         var target = event.target,
-            p = target.parentNode.getElementsByTagName('p')[0];
+            p = target.parentNode.getElementsByTagName('P')[0];
         if (p.className !== 'marked') {
             p.className = 'marked';
         } else {
