@@ -1,4 +1,14 @@
-//Create Todo
+document.getElementById('new-li').addEventListener('click', newLiByClicking, false);
+document.getElementById('creating').addEventListener('keydown', newLiByPressing, false);
+document.getElementById('deletion').addEventListener('click', deleteAllSelected, false);
+
+
+function newLiByClicking() {
+    if (document.getElementById('creating').value !== '') {
+        newLi();
+    }
+}
+
 function newLi() {
     var list = document.getElementById('maden-todos');
 
@@ -39,17 +49,14 @@ function newLi() {
     list.appendChild(li);
 }
 
-var create = document.getElementById('new-li');
-create.addEventListener('click', newLi, false);
-
-//Delete all selected
-function deleteAllSelected() {
-    var element = document.getElementById('maden-todos');
-
-    while (document.querySelector(':checked') !== null) {
-        element.removeChild(document.querySelector(':checked').parentNode);
+function newLiByPressing(event) {
+    if (event.keyCode == 13 && document.getElementById('creating').value !== '') {
+        newLi();
     }
 }
 
-var el = document.getElementById('deletion');
-el.addEventListener('click', deleteAllSelected, false);
+function deleteAllSelected() {
+    while (document.querySelector(':checked') !== null) {
+        document.getElementById('maden-todos').removeChild(document.querySelector(':checked').parentNode);
+    }
+}
