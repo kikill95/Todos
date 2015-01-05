@@ -53,6 +53,7 @@ a:hover                        { text-decoration:none; }
     bottom: 32px;
     float: right;
     font: 28px "Mariad Pro" serif;
+    color: #180000;
 }
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------CONTENT---------------------------------------*/
@@ -72,4 +73,8 @@ a:hover                        { text-decoration:none; }
 .panel-footer {
     padding-left: 15px;
     font: 18px "Mariad Pro" serif;
+}
+.panel-footer a {
+    font: inherit;
+    text-decoration: none;
 }
