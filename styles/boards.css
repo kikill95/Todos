@@ -1,0 +1,23 @@
+.main-part {
+    margin: 0 20px;
+}
+.main-part p {
+    box-sizing: content-box;
+}
+.main-part input[type=checkbox], input[type=radio] {
+    box-sizing: content-box !important;
+}
+.board {
+    padding: 5px;
+    display: inline-block;
+    border: 3px inset #198cff;
+}
+#creating-board {
+    display: block;
+    width: 260px;
+    height: 28px;
+    margin: 5px auto;
+    border: 3px inset #198cff;
+    border-radius: 10px;
+    text-align: center;
+}
