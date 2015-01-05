@@ -21,3 +21,35 @@
     border-radius: 10px;
     text-align: center;
 }
+#new-board {
+    display: block;
+    width: 160px;
+    margin: 12px auto;
+}
+#maden-boards {
+    width: 860px;
+}
+#maden-boards > li {
+    width: 255px;
+    height: 300px;
+    overflow: auto;
+    margin: 3px 3px auto;
+    padding-right: 10px;
+}
+.delete-board {
+    width: 15px;
+    height: 15px;
+    margin: 2px;
+    float: right;
+    font-size: 10px;
+    color: red;
+    border-color: red;
+    background-color: black;
+}
+.creating-todo {
+    display: block;
+    margin: 2px auto;
+    padding: 4px;
+    border: 3px inset #198cff;
+    border-radius: 10px;
+}
