@@ -53,3 +53,68 @@
     border: 3px inset #198cff;
     border-radius: 10px;
 }
+.maden-todos li {
+    width: 220px;
+    height: 64px;
+}
+.board > p {
+    margin-bottom: 7px;
+    padding-left: 5px;
+    border-bottom: 1px solid #198cff;
+    overflow: auto;
+    font: bold italic 18px "Lucida Console", Monaco, monospace;
+}
+.mark-done {
+    height: 20px;
+    margin: 22px 5px 0 0;
+    float: left;
+    border: 3px solid yellowgreen;
+    border-radius: 3px;
+}
+.marked-todo {
+    text-decoration: line-through;
+    background-color: #707070;
+    border-color: #D0D0D0;
+}
+.preparing-to-delete-todo {
+    width: 20px;
+    height: 20px;
+    margin-top: 22px !important;
+    float: left;
+}
+.deletion-all-selected-todos {
+    display: block;
+    margin: 7px auto;
+    padding: 4px;
+    border: 3px inset #004f9f;
+    border-radius: 5px;
+}
+.board li > p {
+    display: inline-block;
+    width: 120px;
+    height: 29px;
+    padding: 10px;
+    margin: 2px;
+    overflow: auto;
+    font-size: 12px;
+    border: 3px inset #198cff;
+    border-radius: 2px;
+}
+.board li > input {
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.board form > input {
+    display: block;
+    width: 220px;
+    margin: 5px auto;
+    padding: 10px;
+}
+.delete-todo {
+    margin-top: 17px;
+    float: right;
+    font-size: 20px;
+    border-color: red;
+}
