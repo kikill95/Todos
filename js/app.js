@@ -10,8 +10,6 @@ function newLiByClicking() {
 }
 
 function newLi() {
-    var list = document.getElementById('maden-todos');
-
     var li = document.createElement('li'),
         mark = document.createElement('input'),
         check = document.createElement('input'),
@@ -46,7 +44,7 @@ function newLi() {
     li.appendChild(p);
     li.appendChild(btn);
 
-    list.appendChild(li);
+    document.getElementById('maden-todos').appendChild(li);
 }
 
 function newLiByPressing(event) {

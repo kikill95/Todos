@@ -4,21 +4,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Todos</title>
 <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+<link rel="stylesheet" type="text/css" href="styles/boards.css" />
 </head>
 
 <body>
 <div class="wrapper">
-    <div class="main-part">
-        <form action="#" id="todos-list">
-            <input type="text" name="element" id="creating" placeholder="Write your Todo"/>
-            <input type="button" id="new-li" value="+"/>
-            <ul id="maden-todos">
-
+    <div class="header">
+        <div class="navbar navbar-default">
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">4WiseDo</a></li>
+                    <li><h3>Помни о главном</h3></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <select name="language">
+                            <option><a href="#">EN</a></option>
+                            <option><a href="#">UA</a></option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="main-part">
+            <ul class="boards">
+                <form action="#" id="board-list">
+                    <input type="text" name="board-element" id="creating-board" placeholder="Write the name of new Board"/>
+                    <input type="button" id="new-board" value="+"/>
+                    <ul id="maden-boards"></ul>
+                </form>
             </ul>
-            <input type="button" name="delete-all-checked" id="deletion" value="Delete All Selected"/>
-        </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="panel panel-default">
+            <div class="panel-footer">&copy; Все права по поводу данной страници имеет Кирилл Гусятин</div>
+        </div>
     </div>
 </div>
 <script src="js/app.js"></script>
+<script src="js/controller.js"></script>
 </body>
 </html>
