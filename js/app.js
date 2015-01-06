@@ -81,3 +81,55 @@ function newBoard() {
     };
     saveOnServer();
 }
+
+function newTodo(currentCreatingTodo, currentIdOfTodo) {
+    var newId;
+    if (data.todo[currentIdOfTodo].id.length) {
+        var size = data.todo[currentIdOfTodo].id.length;
+        newId = data.todo[currentIdOfTodo].id[size - 1] + 1;
+    } else {
+        newId = 0;
+    }
+    data.todo[currentIdOfTodo].id.push(newId);
+
+    var li = document.createElement('li'),
+        mark = document.createElement('input'),
+        check = document.createElement('input'),
+        todo = document.createElement('p'),
+        btn = document.createElement('input');
+    mark.type = 'button';
+    mark.className = 'mark-done';
+    check.type = 'checkbox';
+    check.className = 'preparing-to-delete-todo';
+    todo.textContent = currentCreatingTodo.value;
+    currentCreatingTodo.value = '';
+
+    data.todo[currentIdOfTodo].text.push(todo.textContent);
+    data.todo[currentIdOfTodo].isMarked.push(false);
+
+    mark.addEventListener('click', function (event) {
+        var target = event.target.parentNode.getElementsByTagName('p')[0];
+        target.className = target.className !== 'marked-todo' ? 'marked-todo' : '';
+        data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
+        saveOnServer();
+    }, false);
+    btn.type = 'button';
+    btn.value = 'X';
+    btn.className = 'delete-todo';
+    btn.addEventListener('click', function (event) {
+        var target = event.target,
+            parent = target.parentNode;
+        parent.parentNode.removeChild(parent);
+
+        data.todo[currentIdOfTodo].id.splice(newId, newId + 1);
+        data.todo[currentIdOfTodo].text.splice(newId, newId + 1);
+        data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
+        saveOnServer();
+    }, false);
+    li.appendChild(mark);
+    li.appendChild(check);
+    li.appendChild(todo);
+    li.appendChild(btn);
+    currentCreatingTodo.parentNode.getElementsByTagName('ul')[0].appendChild(li);
+    saveOnServer();
+}
