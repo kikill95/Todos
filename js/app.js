@@ -1,8 +1,13 @@
-var data = new Object ({
+var data;
+if (localStorage.data) {
+    data = JSON.parse(localStorage.data)
+} else {
+    data = new Object ({
     id: [],
     name: [],
     todo: []
 });
+}
 
 document.getElementById('creating-board').addEventListener('keydown', newBoardByPressing, false);
 document.getElementById('new-board').addEventListener('click', newBoardByClicking, false);
@@ -135,5 +140,5 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
 }
 
 function save() {
-
+    localStorage.data = JSON.stringify(data);
 }
