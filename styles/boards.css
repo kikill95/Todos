@@ -83,7 +83,6 @@
     float: left;
 }
 .deletion-all-selected-todos {
-    display: block;
     margin: 7px auto;
     padding: 4px;
     border: 3px inset #004f9f;

@@ -141,4 +141,13 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
 
 function save() {
     localStorage.data = JSON.stringify(data);
+    var i = 0;
+    while (document.querySelectorAll('.deletion-all-selected-todos')[i]) {
+        if (document.querySelectorAll('.deletion-all-selected-todos')[i].parentNode.querySelector('.mark-done') !== null) {
+            document.querySelectorAll('.deletion-all-selected-todos')[i].style.display = 'block';
+        } else {
+            document.querySelectorAll('.deletion-all-selected-todos')[i].style.display = 'none'
+        }
+        i++;
+    }
 }
