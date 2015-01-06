@@ -70,7 +70,7 @@ function newBoard() {
         while (currentBoard.querySelector(':checked') !== null) {
             currentBoard.querySelector(':checked').nextElementSibling.nextElementSibling.click();
         }
-        saveOnServer();
+        save();
     }, false);
     document.getElementById('maden-boards').appendChild(board);
 
@@ -79,7 +79,7 @@ function newBoard() {
         text: [],
         isMarked: []
     };
-    saveOnServer();
+    save();
 }
 
 function newTodo(currentCreatingTodo, currentIdOfTodo) {
@@ -111,7 +111,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         var target = event.target.parentNode.getElementsByTagName('p')[0];
         target.className = target.className !== 'marked-todo' ? 'marked-todo' : '';
         data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
-        saveOnServer();
+        save();
     }, false);
     btn.type = 'button';
     btn.value = 'X';
@@ -124,12 +124,16 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         data.todo[currentIdOfTodo].id.splice(newId, newId + 1);
         data.todo[currentIdOfTodo].text.splice(newId, newId + 1);
         data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
-        saveOnServer();
+        save();
     }, false);
     li.appendChild(mark);
     li.appendChild(check);
     li.appendChild(todo);
     li.appendChild(btn);
     currentCreatingTodo.parentNode.getElementsByTagName('ul')[0].appendChild(li);
-    saveOnServer();
+    save();
+}
+
+function save() {
+
 }
