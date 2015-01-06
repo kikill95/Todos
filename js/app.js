@@ -151,3 +151,13 @@ function save() {
         i++;
     }
 }
+
+document.getElementById('clear-storage').addEventListener('click', function() {
+    document.getElementById('maden-boards').innerHTML = "";
+    localStorage.clear();
+    data = ({
+        id: [],
+        name: [],
+        todo: []
+    });
+}, false);

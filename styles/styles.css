@@ -36,6 +36,7 @@ a:hover                        { text-decoration:none; }
 }
 .navbar {
     width: 545px;
+    float: left;
 }
 .header h1 {
     padding-top: 18px;
@@ -54,6 +55,15 @@ a:hover                        { text-decoration:none; }
     float: right;
     font: 28px "Mariad Pro" serif;
     color: #180000;
+}
+#clear-storage {
+    display: block;
+    width: 180px;
+    height: 28px;
+    float: right;
+    margin: 24px;
+    border: 1px solid #707070;
+    border-radius: 10px;
 }
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------CONTENT---------------------------------------*/
