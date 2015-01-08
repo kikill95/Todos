@@ -160,4 +160,5 @@ document.getElementById('clear-storage').addEventListener('click', function() {
         name: [],
         todo: []
     });
+    document.getElementById('maden-boards').innerHTML = '';
 }, false);
