@@ -7,10 +7,14 @@ setTimeout(function () {
             document.getElementById('creating-board').value = temp.name[i];
             document.getElementById('new-board').click();
             for (j = 0; j < temp.todo[i].id.length; j++) {
-                document.querySelectorAll('.creating-todo')[i].value = temp.todo[i].text[j];
-                newTodo(document.querySelectorAll('.creating-todo')[i], i);
+                var creatingTodo = document.querySelectorAll('.creating-todo')[i];
+                creatingTodo.value = temp.todo[i].text[j];
+                newTodo(creatingTodo, i);
+                if (temp.todo[i].isMarked[j]) {
+                    creatingTodo.parentNode.querySelectorAll('.mark-done')[j].click();
+                }
             }
         }
     }
-}, 1000);
+}, 200);
 
