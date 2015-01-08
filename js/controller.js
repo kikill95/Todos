@@ -1,20 +1,18 @@
-setTimeout(function () {
-    if (localStorage.data) {
-        var i, j,
-            temp = JSON.parse(localStorage.data);
-        document.getElementById('clear-storage').click();
-        for (i = 0; i < temp.id.length; i++) {
-            document.getElementById('creating-board').value = temp.name[i];
-            document.getElementById('new-board').click();
-            for (j = 0; j < temp.todo[i].id.length; j++) {
-                var creatingTodo = document.querySelectorAll('.creating-todo')[i];
-                creatingTodo.value = temp.todo[i].text[j];
-                newTodo(creatingTodo, i);
-                if (temp.todo[i].isMarked[j]) {
-                    creatingTodo.parentNode.querySelectorAll('.mark-done')[j].click();
-                }
+if (localStorage.data) {
+    var i, j,
+        temp = JSON.parse(localStorage.data);
+    document.getElementById('clear-storage').click();
+    for (i = 0; i < temp.id.length; i++) {
+        document.getElementById('creating-board').value = temp.name[i];
+        document.getElementById('new-board').click();
+        for (j = 0; j < temp.todo[i].id.length; j++) {
+            var creatingTodo = document.querySelectorAll('.creating-todo')[i];
+            creatingTodo.value = temp.todo[i].text[j];
+            newTodo(creatingTodo, i);
+            if (temp.todo[i].isMarked[j]) {
+                creatingTodo.parentNode.querySelectorAll('.mark-done')[j].click();
             }
         }
     }
-}, 200);
+}
 
