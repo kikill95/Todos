@@ -1,6 +1,6 @@
 var data;
 if (localStorage.data) {
-    data = JSON.parse(localStorage.data)
+    data = JSON.parse(localStorage.data);
 } else {
     data = new Object ({
     id: [],
