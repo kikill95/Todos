@@ -63,6 +63,7 @@ function newBoard() {
         data.id.splice(currentId, currentId + 1);
         data.name.splice(currentId, currentId + 1);
         data.todo.splice(currentId, currentId + 1);
+        save();
     }, false);
     creatingTodo.addEventListener('keydown', function(event) {
         if (event.keyCode == 13 && event.target.value !== '') {
@@ -153,7 +154,6 @@ function save() {
 }
 
 document.getElementById('clear-storage').addEventListener('click', function() {
-    document.getElementById('maden-boards').innerHTML = "";
     localStorage.clear();
     data = ({
         id: [],
