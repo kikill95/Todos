@@ -41,6 +41,7 @@ function newBoard() {
         list = document.createElement('ul'),
         deleteAllThatSelected = document.createElement('input');
     board.className = 'board';
+    name.className = 'name-of-board';
     name.textContent = data.name[currentId] = document.getElementById('creating-board').value;
     document.getElementById('creating-board').value = '';
     deleteBoard.type = 'button';
@@ -58,6 +59,23 @@ function newBoard() {
     board.appendChild(creatingTodo);
     board.appendChild(list);
     board.appendChild(deleteAllThatSelected);
+    name.addEventListener('dblclick', function(event) {
+        var el = event.target;
+        el.style.display = 'none';
+        var editLabel = document.createElement('input');
+        editLabel.type = 'text';
+        editLabel.className = 'edit-name-of-board';
+        editLabel.value = el.textContent;
+        board.insertBefore(editLabel, board.querySelector('.creating-todo')).focus();
+        editLabel.addEventListener('keypress', function(e) {
+            if (e.keyCode == 13 && el.textContent !== '') {
+                el.textContent = data.name[currentId] = e.target.value;
+                el.style.display = 'block';
+                save();
+                removeDOMel(e.target);
+            }
+        }, false);
+    }, false);
     deleteBoard.addEventListener('click', function(event) {
         event.target.parentNode.remove();
         data.id.splice(currentId, currentId + 1);
@@ -147,7 +165,7 @@ function save() {
         if (document.querySelectorAll('.deletion-all-selected-todos')[i].parentNode.querySelector('.mark-done') !== null) {
             document.querySelectorAll('.deletion-all-selected-todos')[i].style.display = 'block';
         } else {
-            document.querySelectorAll('.deletion-all-selected-todos')[i].style.display = 'none'
+            document.querySelectorAll('.deletion-all-selected-todos')[i].style.display = 'none';
         }
         i++;
     }
@@ -162,3 +180,7 @@ document.getElementById('clear-storage').addEventListener('click', function() {
     });
     document.getElementById('maden-boards').innerHTML = '';
 }, false);
+
+function removeDOMel(elem) {
+    return elem.parentNode ? elem.parentNode.removeChild(elem) : elem;
+}

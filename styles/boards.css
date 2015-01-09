@@ -57,12 +57,17 @@
     width: 220px;
     height: 64px;
 }
-.board > p {
+.name-of-board, .edit-name-of-board {
     margin-bottom: 7px;
     padding-left: 5px;
     border-bottom: 1px solid #198cff;
     overflow: auto;
     font: bold italic 18px "Lucida Console", Monaco, monospace;
+}
+.edit-name-of-board {
+    width: 226px;
+    height: 22px;
+    margin-bottom: 3px;
 }
 .mark-done {
     height: 20px;
