@@ -70,9 +70,9 @@ function newBoard() {
         editLabel.addEventListener('keypress', function(e) {
             if (e.keyCode == 13 && editLabel.value !== '') {
                 el.textContent = data.name[currentId] = editLabel.value;
+                editLabel.parentNode.removeChild(editLabel);
                 el.style.display = 'block';
                 save();
-                editLabel.parentNode.removeChild(editLabel);
             }
         }, false);
     }, false);
@@ -139,9 +139,9 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         editLabel.addEventListener('keypress', function(e) {
             if (e.keyCode == 13 && editLabel.value !== '') {
                 el.textContent = data.todo[currentIdOfTodo].text[newId] = editLabel.value;
-                el.style.display = 'block';
-                save();
                 editLabel.parentNode.removeChild(editLabel);
+                el.style.display = 'inline-block';
+                save();
             }
         }, false);
     }, false);
@@ -151,7 +151,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
 
     mark.addEventListener('click', function (event) {
         var target = event.target.parentNode.getElementsByTagName('p')[0];
-        target.className = target.className !== 'marked-todo' ? 'marked-todo' : '';
+        target.className = target.className !== 'name-of-todo marked-todo' ? 'name-of-todo marked-todo' : 'name-of-todo';
         data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
         save();
     }, false);

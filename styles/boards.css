@@ -53,6 +53,9 @@
     border: 3px inset #198cff;
     border-radius: 10px;
 }
+.maden-todos {
+    margin-top: 10px;
+}
 .maden-todos li {
     width: 255px;
     height: 64px;
@@ -101,8 +104,8 @@
 }
 .name-of-todo, .edit-name-of-todo {
     display: inline-block;
-    width: 158px;
-    height: 29px;
+    width: 158px !important;
+    height: 29px !important;
     padding: 10px;
     margin: 2px;
     overflow: auto;
@@ -110,11 +113,7 @@
     border: 3px inset #198cff;
     border-radius: 2px;
 }
-.edit-name-of-todo {
-
-}
 .board form > input {
-    display: block;
     width: 220px;
     margin: 5px auto;
     padding: 10px;
