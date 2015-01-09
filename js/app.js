@@ -68,11 +68,11 @@ function newBoard() {
         editLabel.value = el.textContent;
         board.insertBefore(editLabel, board.querySelector('.creating-todo')).focus();
         editLabel.addEventListener('keypress', function(e) {
-            if (e.keyCode == 13 && el.textContent !== '') {
-                el.textContent = data.name[currentId] = e.target.value;
+            if (e.keyCode == 13 && editLabel.value !== '') {
+                el.textContent = data.name[currentId] = editLabel.value;
                 el.style.display = 'block';
                 save();
-                removeDOMel(e.target);
+                editLabel.parentNode.removeChild(editLabel);
             }
         }, false);
     }, false);
@@ -180,7 +180,3 @@ document.getElementById('clear-storage').addEventListener('click', function() {
     });
     document.getElementById('maden-boards').innerHTML = '';
 }, false);
-
-function removeDOMel(elem) {
-    return elem.parentNode ? elem.parentNode.removeChild(elem) : elem;
-}
