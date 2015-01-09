@@ -127,6 +127,24 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
     check.className = 'preparing-to-delete-todo';
     todo.textContent = currentCreatingTodo.value;
     currentCreatingTodo.value = '';
+    todo.className = 'name-of-todo';
+    todo.addEventListener('dblclick', function(event) {
+        var el = event.target;
+        el.style.display = 'none';
+        var editLabel = document.createElement('input');
+        editLabel.type = 'text';
+        editLabel.className = 'edit-name-of-todo';
+        editLabel.value = el.textContent;
+        el.parentNode.insertBefore(editLabel, el.parentNode.querySelector('.delete-todo')).focus();
+        editLabel.addEventListener('keypress', function(e) {
+            if (e.keyCode == 13 && editLabel.value !== '') {
+                el.textContent = data.todo[currentIdOfTodo].text[newId] = editLabel.value;
+                el.style.display = 'block';
+                save();
+                editLabel.parentNode.removeChild(editLabel);
+            }
+        }, false);
+    }, false);
 
     data.todo[currentIdOfTodo].text.push(todo.textContent);
     data.todo[currentIdOfTodo].isMarked.push(false);

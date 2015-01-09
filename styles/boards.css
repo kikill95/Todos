@@ -93,7 +93,7 @@
     border: 3px inset #004f9f;
     border-radius: 5px;
 }
-.board li > p {
+.name-of-todo, .edit-name-of-todo {
     display: inline-block;
     width: 120px;
     height: 29px;
@@ -104,7 +104,10 @@
     border: 3px inset #198cff;
     border-radius: 2px;
 }
-.board li > input {
+.edit-name-of-todo {
+
+}
+.mark-done, .preparing-to-delete-todo, .delete-todo {
     width: 20px;
     height: 20px;
     font-size: 13px;
@@ -119,6 +122,6 @@
 .delete-todo {
     margin-top: 17px;
     float: right;
-    font-size: 20px;
+    font-size: 14px;
     border-color: red;
 }
