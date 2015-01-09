@@ -54,7 +54,7 @@
     border-radius: 10px;
 }
 .maden-todos li {
-    width: 220px;
+    width: 255px;
     height: 64px;
 }
 .name-of-board, .edit-name-of-board {
@@ -65,7 +65,7 @@
     font: bold italic 18px "Lucida Console", Monaco, monospace;
 }
 .edit-name-of-board {
-    width: 226px;
+    width: 212px;
     height: 22px;
     margin-bottom: 3px;
 }
@@ -93,9 +93,15 @@
     border: 3px inset #004f9f;
     border-radius: 5px;
 }
+.board li > input {
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
 .name-of-todo, .edit-name-of-todo {
     display: inline-block;
-    width: 120px;
+    width: 158px;
     height: 29px;
     padding: 10px;
     margin: 2px;
@@ -107,12 +113,6 @@
 .edit-name-of-todo {
 
 }
-.mark-done, .preparing-to-delete-todo, .delete-todo {
-    width: 20px;
-    height: 20px;
-    font-size: 13px;
-    font-weight: bold;
-}
 .board form > input {
     display: block;
     width: 220px;
@@ -122,6 +122,6 @@
 .delete-todo {
     margin-top: 17px;
     float: right;
-    font-size: 14px;
+    font-size: 20px;
     border-color: red;
 }
