@@ -57,7 +57,7 @@
     margin-top: 10px;
 }
 .maden-todos li {
-    width: 255px;
+    width: 245px;
     height: 64px;
 }
 .name-of-board, .edit-name-of-board {
@@ -104,7 +104,7 @@
 }
 .name-of-todo, .edit-name-of-todo {
     display: inline-block;
-    width: 158px !important;
+    width: 149px !important;
     height: 29px !important;
     padding: 10px;
     margin: 2px;

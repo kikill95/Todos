@@ -56,14 +56,24 @@ a:hover                        { text-decoration:none; }
     font: 28px "Mariad Pro" serif;
     color: #180000;
 }
-#clear-storage {
-    display: block;
-    width: 180px;
-    height: 28px;
+#menu {
+    height: 60px;
+    margin: 10px;
     float: right;
-    margin: 24px;
+}
+#menu input {
+    display: block;
+    height: 28px;
+    margin: 0 auto;
+    margin-top: 2px;
     border: 1px solid #707070;
     border-radius: 10px;
+}
+#clear-storage {
+    width: 145px;
+}
+#info {
+    width: 105px;
 }
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------CONTENT---------------------------------------*/
