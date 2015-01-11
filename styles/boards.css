@@ -1,12 +1,6 @@
 .main-part {
     margin: 0 20px;
 }
-.main-part p {
-    box-sizing: content-box;
-}
-.main-part input[type=checkbox], input[type=radio] {
-    box-sizing: content-box !important;
-}
 .board {
     padding: 5px;
     display: inline-block;
