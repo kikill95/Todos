@@ -14,3 +14,12 @@ document.getElementById('info').addEventListener('click', function() {
     alert(info);
 }, false);
 
+document.getElementById('mark-all').addEventListener('click', function(e) {
+    var btns = document.querySelectorAll('.mark-done');
+    [].forEach.call(btns, function (el) {
+        if (!el.parentNode.querySelector('.name-of-todo').classList.contains('marked-todo')) {
+            el.click();
+        }
+    });
+}, false);
+
