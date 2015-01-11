@@ -62,7 +62,7 @@ a:hover                        { text-decoration:none; }
     margin: 10px;
     float: right;
 }
-#menu input {
+#menu input, #showing-filter input {
     height: 28px;
     display: block;
     float: right;
@@ -70,6 +70,16 @@ a:hover                        { text-decoration:none; }
     padding: 0 25px;
     border: 1px solid #707070;
     border-radius: 10px;
+}
+#clear-storage {
+    float: none !important;
+    margin: 0 auto !important;
+}
+#showing-filter {
+    height: 20px;
+    float: right;
+    position: relative;
+    top: -24px;
 }
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------CONTENT---------------------------------------*/
