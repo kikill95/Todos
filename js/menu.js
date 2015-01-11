@@ -14,11 +14,40 @@ document.getElementById('info').addEventListener('click', function() {
     alert(info);
 }, false);
 
-document.getElementById('mark-all').addEventListener('click', function(e) {
+document.getElementById('mark-all').addEventListener('click', function() {
     var btns = document.querySelectorAll('.mark-done');
     [].forEach.call(btns, function (el) {
         if (!el.parentNode.querySelector('.name-of-todo').classList.contains('marked-todo')) {
             el.click();
+        }
+    });
+}, false);
+
+document.getElementById('show-all').addEventListener('click', function() {
+    var todos = document.querySelectorAll('.name-of-todo');
+    [].forEach.call(todos, function (el) {
+        el.parentNode.style.display = 'list-item';
+    });
+}, false);
+
+document.getElementById('show-done').addEventListener('click', function() {
+    var todos = document.querySelectorAll('.name-of-todo');
+    [].forEach.call(todos, function (el) {
+        if (!el.parentNode.querySelector('.name-of-todo').classList.contains('marked-todo')) {
+            el.parentNode.style.display = 'none';
+        } else {
+            el.parentNode.style.display = 'list-item';
+        }
+    });
+}, false);
+
+document.getElementById('show-not-done').addEventListener('click', function() {
+    var todos = document.querySelectorAll('.name-of-todo');
+    [].forEach.call(todos, function (el) {
+        if (el.parentNode.querySelector('.name-of-todo').classList.contains('marked-todo')) {
+            el.parentNode.style.display = 'none';
+        } else {
+            el.parentNode.style.display = 'list-item';
         }
     });
 }, false);
