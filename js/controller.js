@@ -1,7 +1,10 @@
 if (localStorage.data) {
-    var i, j,
-        temp = JSON.parse(localStorage.data);
+    var temp = JSON.parse(localStorage.data);
     document.getElementById('clear-storage').click();
+    update(temp);
+}
+function update(temp) {
+    var i, j;
     for (i = 0; i < temp.id.length; i++) {
         document.getElementById('creating-board').value = temp.name[i];
         document.getElementById('new-board').click();
@@ -15,4 +18,3 @@ if (localStorage.data) {
         }
     }
 }
-
