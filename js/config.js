@@ -25,3 +25,16 @@ document.getElementById('update-server').addEventListener('click', function(e) {
     Btn.textContent = 'Updating...';
     Btn.disabled = true;
 });
+
+document.getElementById('clear-server').addEventListener('click', function(e) {
+    var request = new XMLHttpRequest(),
+        Btn = e.target;
+    request.addEventListener('load', function() {
+        Btn.textContent = 'Clear server';
+        Btn.disabled = false;
+    });
+    request.open('POST', 'http://localhost:1337/');
+    request.send(null);
+    Btn.textContent = 'Clearing...';
+    Btn.disabled = true;
+});
