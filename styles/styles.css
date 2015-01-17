@@ -15,7 +15,7 @@ textarea                       { vertical-align:top; }
 input[type=submit]             { cursor:pointer; }
 img, fieldset                  { border:0; }
 table                          { border-collapse:collapse; border-spacing:0; }
-a:link, a:visited              { font:12px Tahoma, sans-serif; color:#000; text-decoration:underline; }
+a:link, a:visited              { font:25px Tahoma, sans-serif; color:#000; text-decoration:underline; }
 a:hover                        { text-decoration:none; }
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------WRAPPER---------------------------------------*/
@@ -48,14 +48,14 @@ a:hover                        { text-decoration:none; }
     padding: 10px;
     border-radius: 4px;
     background-color: #D0D0D0;
-    font: 25px "Mariad Pro" serif;
+    font: 25px "PT Sans" serif;
     text-decoration: none;
 }
 .header strong {
     position: relative;
     bottom: 32px;
     float: right;
-    font: 28px "Mariad Pro" serif;
+    font: 28px "PT Sans" serif;
     color: #180000;
 }
 #menu {
@@ -64,7 +64,7 @@ a:hover                        { text-decoration:none; }
     margin: 10px;
     float: right;
 }
-#menu input, #showing-filter input {
+#menu input, #showing-filter input, #working-with-server input {
     height: 28px;
     display: block;
     float: right;
@@ -77,12 +77,6 @@ a:hover                        { text-decoration:none; }
     float: none !important;
     margin: 0 auto !important;
 }
-#showing-filter {
-    height: 20px;
-    float: right;
-    position: relative;
-    top: -24px;
-}
 /*----------------------------------------------------------------------------------*/
 /*------------------------------------FOOTER----------------------------------------*/
 /*----------------------------------------------------------------------------------*/
@@ -93,7 +87,7 @@ a:hover                        { text-decoration:none; }
 /*------------------------------------FOOTER----------------------------------------*/
 /*----------------------------------------------------------------------------------*/
 .footer {
-    height: 21px;
+    height: 52px;
     width: 868px;
     position: absolute;
     bottom: 0;
@@ -101,11 +95,24 @@ a:hover                        { text-decoration:none; }
     border-radius: 4px;
     background-color: #D0D0D0;
 }
-.panel-footer {
+.rights-footer {
+    position: relative;
+    top: 20px;
     padding-left: 15px;
-    font: 18px "Mariad Pro" serif;
+    font: 18px "PT Sans" serif;
 }
-.panel-footer a {
+.rights-footer a {
     font: inherit;
     text-decoration: none;
+}
+#showing-filter, #working-with-server {
+    height: 20px;
+    float: right;
+    position: relative;
+    top: -24px;
+}
+#working-with-server {
+    clear: both;
+    top: -10px;
+    right: 35px;
 }

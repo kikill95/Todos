@@ -24,7 +24,7 @@
     width: 860px;
 }
 #maden-boards > li {
-    width: 255px;
+    min-width: 255px;
     height: 300px;
     overflow: auto;
     margin: 3px 3px auto;
