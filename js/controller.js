@@ -1,9 +1,12 @@
+//for automatic uploading info, but it has conflict with server work
+/*
 if (localStorage.data) {
     var temp = JSON.parse(localStorage.data);
-    document.getElementById('clear-storage').click();
     update(temp);
 }
+*/
 function update(temp) {
+    document.getElementById('clear-storage').click();
     var i, j;
     for (i = 0; i < temp.id.length; i++) {
         document.getElementById('creating-board').value = temp.name[i];
