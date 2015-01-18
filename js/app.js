@@ -43,7 +43,6 @@ function newBoard() {
     board.className = 'board';
 
     board.draggable = true;
-    var dragSrcEl = null;
     board.addEventListener('dragstart', function(e) {
         board.classList.add('dragged');
 
@@ -53,14 +52,13 @@ function newBoard() {
         e.dataTransfer.setData('text/html', board.innerHTML);
     });
     board.addEventListener('dragenter', function(e) {
+        e.preventDefault();
         e.target.classList.add('over');
-        e.preventDefault();//is it needed?
     });
     board.addEventListener('dragover', function(e) {
         if (e.preventDefault) { //for links, etc.
             e.preventDefault();
         }
-        //e.dataTransfer.dropEffect = 'move'; //is it needed?
         return false;
     });
     board.addEventListener('dragleave', function(e) {
