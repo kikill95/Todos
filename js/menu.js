@@ -12,7 +12,7 @@ document.getElementById('info').addEventListener('click', function() {
         info += 'none';
     }
     alert(info);
-}, false);
+});
 
 document.getElementById('mark-all').addEventListener('click', function() {
     var btns = document.querySelectorAll('.mark-done');
@@ -21,14 +21,14 @@ document.getElementById('mark-all').addEventListener('click', function() {
             el.click();
         }
     });
-}, false);
+});
 
 document.getElementById('show-all').addEventListener('click', function() {
     var todos = document.querySelectorAll('.name-of-todo');
     [].forEach.call(todos, function (el) {
         el.parentNode.style.display = 'list-item';
     });
-}, false);
+});
 
 document.getElementById('show-done').addEventListener('click', function() {
     var todos = document.querySelectorAll('.name-of-todo');
@@ -39,7 +39,7 @@ document.getElementById('show-done').addEventListener('click', function() {
             el.parentNode.style.display = 'list-item';
         }
     });
-}, false);
+});
 
 document.getElementById('show-not-done').addEventListener('click', function() {
     var todos = document.querySelectorAll('.name-of-todo');
@@ -50,4 +50,4 @@ document.getElementById('show-not-done').addEventListener('click', function() {
             el.parentNode.style.display = 'list-item';
         }
     });
-}, false);
+});

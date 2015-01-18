@@ -9,8 +9,8 @@ if (localStorage.data) {
 });
 }
 
-document.getElementById('creating-board').addEventListener('keydown', newBoardByPressing, false);
-document.getElementById('new-board').addEventListener('click', newBoardByClicking, false);
+document.getElementById('creating-board').addEventListener('keydown', newBoardByPressing);
+document.getElementById('new-board').addEventListener('click', newBoardByClicking);
 
 function newBoardByPressing(event) {
     if (event.keyCode == 13 && document.getElementById('creating-board').value !== '') {
@@ -51,21 +51,21 @@ function newBoard() {
 
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/html', board.innerHTML);
-    }, false);
+    });
     board.addEventListener('dragenter', function(e) {
         e.target.classList.add('over');
         e.preventDefault();//is it needed?
-    }, false);
+    });
     board.addEventListener('dragover', function(e) {
         if (e.preventDefault) { //for links, etc.
             e.preventDefault();
         }
         //e.dataTransfer.dropEffect = 'move'; //is it needed?
         return false;
-    }, false);
+    });
     board.addEventListener('dragleave', function(e) {
         board.classList.remove('over');
-    }, false);
+    });
     board.addEventListener('drop', function(e) {
         if (e.stopPropagation) { //Stops some browsers from redirecting
             e.stopPropagation();
@@ -74,17 +74,17 @@ function newBoard() {
         if (dragSrcEl != board) {
             dragSrcEl.innerHTML = board.innerHTML;
             board.innerHTML = e.dataTransfer.getData('text/html');
+            //TODO - add reactions to new elements
         }
-
         return false;
-    }, false);
+    });
     board.addEventListener('dragend', function() {
         var cols = document.querySelectorAll('.board');
         [].forEach.call(cols, function (col) {
             col.classList.remove('over');
             col.classList.remove('dragged');
         });
-    }, false);
+    });
 
     name.className = 'name-of-board';
     name.textContent = data.name[currentId] = document.getElementById('creating-board').value;
@@ -119,28 +119,28 @@ function newBoard() {
                 el.style.display = 'block';
                 save();
             }
-        }, false);
-    }, false);
+        });
+    });
     deleteBoard.addEventListener('click', function(event) {
         event.target.parentNode.remove();
         data.id.splice(currentId, currentId + 1);
         data.name.splice(currentId, currentId + 1);
         data.todo.splice(currentId, currentId + 1);
         save();
-    }, false);
+    });
     creatingTodo.addEventListener('keydown', function(event) {
         if (event.keyCode == 13 && event.target.value !== '') {
             var currentCreatingTodo = event.target;
             newTodo(currentCreatingTodo, currentId);
         }
-    }, false);
+    });
     deleteAllThatSelected.addEventListener('click', function(event) {
         var currentBoard = event.target.parentNode.getElementsByTagName('ul')[0];
         while (currentBoard.querySelector(':checked') !== null) {
             currentBoard.querySelector(':checked').nextElementSibling.nextElementSibling.click();
         }
         save();
-    }, false);
+    });
     document.getElementById('maden-boards').appendChild(board);
 
     data.todo[currentId] = {
@@ -188,8 +188,8 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
                 el.style.display = 'inline-block';
                 save();
             }
-        }, false);
-    }, false);
+        });
+    });
 
     data.todo[currentIdOfTodo].text.push(todo.textContent);
     data.todo[currentIdOfTodo].isMarked.push(false);
@@ -199,7 +199,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         target.className = target.className !== 'name-of-todo marked-todo' ? 'name-of-todo marked-todo' : 'name-of-todo';
         data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
         save();
-    }, false);
+    });
     btn.type = 'button';
     btn.value = 'X';
     btn.className = 'delete-todo';
@@ -212,7 +212,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         data.todo[currentIdOfTodo].text.splice(newId, newId + 1);
         data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
         save();
-    }, false);
+    });
     li.appendChild(mark);
     li.appendChild(check);
     li.appendChild(todo);
@@ -242,4 +242,4 @@ document.getElementById('clear-storage').addEventListener('click', function() {
         todo: []
     });
     document.getElementById('maden-boards').innerHTML = '';
-}, false);
+});
