@@ -40,6 +40,12 @@
     border-color: red;
     background-color: black;
 }
+.dragged {
+    opacity: 0.4;
+}
+.over {
+    background-color: #C0C0C0;
+}
 .creating-todo {
     display: block;
     margin: 2px auto;

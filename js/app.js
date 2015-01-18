@@ -41,6 +41,51 @@ function newBoard() {
         list = document.createElement('ul'),
         deleteAllThatSelected = document.createElement('input');
     board.className = 'board';
+
+    board.draggable = true;
+    var dragSrcEl = null;
+    board.addEventListener('dragstart', function(e) {
+        board.classList.add('dragged');
+
+        dragSrcEl = board;
+
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', board.innerHTML);
+    }, false);
+    board.addEventListener('dragenter', function(e) {
+        e.target.classList.add('over');
+        e.preventDefault();//is it needed?
+    }, false);
+    board.addEventListener('dragover', function(e) {
+        if (e.preventDefault) { //for links, etc.
+            e.preventDefault();
+        }
+        //e.dataTransfer.dropEffect = 'move'; //is it needed?
+        return false;
+    }, false);
+    board.addEventListener('dragleave', function(e) {
+        board.classList.remove('over');
+    }, false);
+    board.addEventListener('drop', function(e) {
+        if (e.stopPropagation) { //Stops some browsers from redirecting
+            e.stopPropagation();
+        }
+
+        if (dragSrcEl != board) {
+            dragSrcEl.innerHTML = board.innerHTML;
+            board.innerHTML = e.dataTransfer.getData('text/html');
+        }
+
+        return false;
+    }, false);
+    board.addEventListener('dragend', function() {
+        var cols = document.querySelectorAll('.board');
+        [].forEach.call(cols, function (col) {
+            col.classList.remove('over');
+            col.classList.remove('dragged');
+        });
+    }, false);
+
     name.className = 'name-of-board';
     name.textContent = data.name[currentId] = document.getElementById('creating-board').value;
     document.getElementById('creating-board').value = '';
