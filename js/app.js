@@ -81,9 +81,11 @@ function newBoard() {
 
             currentId = dragSrcEl.id;
             dragSrcEl.addEventListener('dblclick', editingBoard);
+            dragSrcEl.addEventListener('click', deletingBoard);
 
             currentId = board.id;
             board.addEventListener('dblclick', editingBoard);
+            board.addEventListener('click', deletingBoard);
 
         }
         return false;
@@ -132,13 +134,14 @@ function newBoard() {
             }
         });
     }
-    deleteBoard.addEventListener('click', function(event) {
+    deleteBoard.addEventListener('click', deletingBoard);
+    function deletingBoard(event) {
         event.target.parentNode.remove();
         data.id.splice(currentId, currentId + 1);
         data.name.splice(currentId, currentId + 1);
         data.todo.splice(currentId, currentId + 1);
         save();
-    });
+    }
     creatingTodo.addEventListener('keydown', function(event) {
         if (event.keyCode == 13 && event.target.value !== '') {
             var currentCreatingTodo = event.target;
