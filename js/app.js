@@ -1,4 +1,5 @@
-var data;
+var data,
+    dragSrcEl = null;
 if (localStorage.data) {
     data = JSON.parse(localStorage.data);
 } else {
