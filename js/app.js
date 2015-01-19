@@ -42,7 +42,7 @@ function newBoard() {
         list = document.createElement('ul'),
         deleteAllThatSelected = document.createElement('input');
     board.className = 'board';
-    board.id = currentId;
+    board.id = 'Board ' + currentId;
 
     board.draggable = true;
     board.addEventListener('dragstart', function(e) {
@@ -79,13 +79,13 @@ function newBoard() {
             dragSrcEl.id = board.id;
             board.id = tempId;
 
-            currentId = dragSrcEl.id;
+            currentId = getId(dragSrcEl.id);
             dragSrcEl.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
             dragSrcEl.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
             dragSrcEl.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
             dragSrcEl.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);
 
-            currentId = board.id;
+            currentId = getId(board.id);
             board.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
             board.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
             board.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
@@ -198,6 +198,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
     todo.textContent = currentCreatingTodo.value;
     currentCreatingTodo.value = '';
     todo.className = 'name-of-todo';
+
     todo.addEventListener('dblclick', function(event) {
         var el = event.target;
         el.style.display = 'none';
@@ -225,9 +226,11 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
         save();
     });
+
     btn.type = 'button';
     btn.value = 'X';
     btn.className = 'delete-todo';
+
     btn.addEventListener('click', function (event) {
         var target = event.target,
             parent = target.parentNode;
@@ -238,6 +241,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
         save();
     });
+
     li.appendChild(mark);
     li.appendChild(check);
     li.appendChild(todo);
@@ -268,3 +272,8 @@ document.getElementById('clear-storage').addEventListener('click', function() {
     });
     document.getElementById('maden-boards').innerHTML = '';
 });
+
+function getId(str) {
+    var numberStr = str.slice(6);
+    return parseInt(numberStr);
+}
