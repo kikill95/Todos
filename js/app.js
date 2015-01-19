@@ -82,31 +82,9 @@ function newBoard() {
             board.id = tempId;
 
             currentId = getId(dragSrcEl.id);
-            dragSrcEl.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
-            dragSrcEl.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
-            dragSrcEl.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
-            dragSrcEl.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);/*
-            var lis = dragSrcEl.querySelectorAll('.name-of-todo').parentNode;
-            [].forEach.call(lis, function (el) {
-                var newId = getId(el.id);
-                el.querySelector('.name-of-todo').addEventListener('dblclick', handlerForEditingTodo);
-                el.querySelector('.mark-done').addEventListener('click', handlerForMarkingTodo);
-                el.querySelector('.delete-todo').addEventListener('click', handlerForDeletionTodo);
-            });*/
-
+            addingAllNeededListeners(dragSrcEl);
             currentId = getId(board.id);
-            board.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
-            board.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
-            board.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
-            board.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);/*
-            lis = board.querySelectorAll('.name-of-todo').parentNode;
-            [].forEach.call(lis, function (el) {
-                var newId = getId(el.id);
-                el.querySelector('.name-of-todo').addEventListener('dblclick', handlerForEditingTodo);
-                el.querySelector('.mark-done').addEventListener('click', handlerForMarkingTodo);
-                el.querySelector('.delete-todo').addEventListener('click', handlerForDeletionTodo);
-            });*/
-
+            addingAllNeededListeners(board);
         }
         return false;
     });
@@ -289,4 +267,19 @@ function handlerForDeletionTodo(event) {
     data.todo[currentIdOfTodo].text.splice(newId, newId + 1);
     data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
     save();
+}
+
+function addingAllNeededListeners(element) {
+    element.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
+    element.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
+    element.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
+    element.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);
+    var lis = element.querySelectorAll('.name-of-todo');
+    [].forEach.call(lis, function (el) {
+        el = el.parentNode;
+        var newId = getId(el.id);
+        el.querySelector('.name-of-todo').addEventListener('dblclick', handlerForEditingTodo);
+        el.querySelector('.mark-done').addEventListener('click', handlerForMarkingTodo);
+        el.querySelector('.delete-todo').addEventListener('click', handlerForDeletionTodo);
+    });
 }
