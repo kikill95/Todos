@@ -80,12 +80,14 @@ function newBoard() {
             board.id = tempId;
 
             currentId = dragSrcEl.id;
-            dragSrcEl.addEventListener('dblclick', editingBoard);
-            dragSrcEl.addEventListener('click', deletingBoard);
+            dragSrcEl.addEventListener('dblclick', handlerForEditingBoard);
+            dragSrcEl.addEventListener('click', handlerForDeletingBoard);
+            dragSrcEl.addEventListener('keydown', handlerForCreatingTodo);
 
             currentId = board.id;
-            board.addEventListener('dblclick', editingBoard);
-            board.addEventListener('click', deletingBoard);
+            board.addEventListener('dblclick', handlerForEditingBoard);
+            board.addEventListener('click', handlerForDeletingBoard);
+            board.addEventListener('keydown', handlerForCreatingTodo);
 
         }
         return false;
@@ -116,8 +118,9 @@ function newBoard() {
     board.appendChild(creatingTodo);
     board.appendChild(list);
     board.appendChild(deleteAllThatSelected);
-    name.addEventListener('dblclick', editingBoard);
-    function editingBoard(event) {
+
+    name.addEventListener('dblclick', handlerForEditingBoard);
+    function handlerForEditingBoard(event) {
         var el = event.target;
         el.style.display = 'none';
         var editLabel = document.createElement('input');
@@ -134,20 +137,25 @@ function newBoard() {
             }
         });
     }
-    deleteBoard.addEventListener('click', deletingBoard);
-    function deletingBoard(event) {
+
+    deleteBoard.addEventListener('click', handlerForDeletingBoard);
+    function handlerForDeletingBoard(event) {
+        e.stopPropagation();
         event.target.parentNode.remove();
         data.id.splice(currentId, currentId + 1);
         data.name.splice(currentId, currentId + 1);
         data.todo.splice(currentId, currentId + 1);
         save();
     }
-    creatingTodo.addEventListener('keydown', function(event) {
+
+    creatingTodo.addEventListener('keydown', handlerForCreatingTodo);
+    function handlerForCreatingTodo(event) {
         if (event.keyCode == 13 && event.target.value !== '') {
             var currentCreatingTodo = event.target;
             newTodo(currentCreatingTodo, currentId);
         }
-    });
+    }
+
     deleteAllThatSelected.addEventListener('click', function(event) {
         var currentBoard = event.target.parentNode.getElementsByTagName('ul')[0];
         while (currentBoard.querySelector(':checked') !== null) {
@@ -155,6 +163,7 @@ function newBoard() {
         }
         save();
     });
+
     document.getElementById('maden-boards').appendChild(board);
 
     data.todo[currentId] = {
