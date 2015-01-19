@@ -80,14 +80,16 @@ function newBoard() {
             board.id = tempId;
 
             currentId = dragSrcEl.id;
-            dragSrcEl.addEventListener('dblclick', handlerForEditingBoard);
-            dragSrcEl.addEventListener('click', handlerForDeletingBoard);
-            dragSrcEl.addEventListener('keydown', handlerForCreatingTodo);
+            dragSrcEl.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
+            dragSrcEl.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
+            dragSrcEl.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
+            dragSrcEl.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);
 
             currentId = board.id;
-            board.addEventListener('dblclick', handlerForEditingBoard);
-            board.addEventListener('click', handlerForDeletingBoard);
-            board.addEventListener('keydown', handlerForCreatingTodo);
+            board.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
+            board.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
+            board.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
+            board.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);
 
         }
         return false;
@@ -140,7 +142,6 @@ function newBoard() {
 
     deleteBoard.addEventListener('click', handlerForDeletingBoard);
     function handlerForDeletingBoard(event) {
-        e.stopPropagation();
         event.target.parentNode.remove();
         data.id.splice(currentId, currentId + 1);
         data.name.splice(currentId, currentId + 1);
@@ -156,13 +157,14 @@ function newBoard() {
         }
     }
 
-    deleteAllThatSelected.addEventListener('click', function(event) {
+    deleteAllThatSelected.addEventListener('click', handlerForDeletionAllThatSelected);
+    function handlerForDeletionAllThatSelected(event) {
         var currentBoard = event.target.parentNode.getElementsByTagName('ul')[0];
         while (currentBoard.querySelector(':checked') !== null) {
             currentBoard.querySelector(':checked').nextElementSibling.nextElementSibling.click();
         }
         save();
-    });
+    }
 
     document.getElementById('maden-boards').appendChild(board);
 
