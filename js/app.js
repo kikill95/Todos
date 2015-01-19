@@ -1,5 +1,8 @@
 var data,
-    dragSrcEl = null;
+    dragSrcEl = null,
+    newId,
+    currentId,
+    currentIdOfTodo;
 if (localStorage.data) {
     data = JSON.parse(localStorage.data);
 } else {
@@ -26,7 +29,6 @@ function newBoardByClicking() {
 }
 
 function newBoard() {
-    var currentId;
     if (data.id.length) {
         var size = data.id.length;
         currentId = data.id[size - 1] + 1;
@@ -63,7 +65,7 @@ function newBoard() {
         }
         return false;
     });
-    board.addEventListener('dragleave', function(e) {
+    board.addEventListener('dragleave', function() {
         board.classList.remove('over');
     });
     board.addEventListener('drop', function(e) {
@@ -83,13 +85,27 @@ function newBoard() {
             dragSrcEl.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
             dragSrcEl.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
             dragSrcEl.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
-            dragSrcEl.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);
+            dragSrcEl.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);/*
+            var lis = dragSrcEl.querySelectorAll('.name-of-todo').parentNode;
+            [].forEach.call(lis, function (el) {
+                var newId = getId(el.id);
+                el.querySelector('.name-of-todo').addEventListener('dblclick', handlerForEditingTodo);
+                el.querySelector('.mark-done').addEventListener('click', handlerForMarkingTodo);
+                el.querySelector('.delete-todo').addEventListener('click', handlerForDeletionTodo);
+            });*/
 
             currentId = getId(board.id);
             board.querySelector('.name-of-board').addEventListener('dblclick', handlerForEditingBoard);
             board.querySelector('.delete-board').addEventListener('click', handlerForDeletingBoard);
             board.querySelector('.creating-todo').addEventListener('keydown', handlerForCreatingTodo);
-            board.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);
+            board.querySelector('.deletion-all-selected-todos').addEventListener('click', handlerForDeletionAllThatSelected);/*
+            lis = board.querySelectorAll('.name-of-todo').parentNode;
+            [].forEach.call(lis, function (el) {
+                var newId = getId(el.id);
+                el.querySelector('.name-of-todo').addEventListener('dblclick', handlerForEditingTodo);
+                el.querySelector('.mark-done').addEventListener('click', handlerForMarkingTodo);
+                el.querySelector('.delete-todo').addEventListener('click', handlerForDeletionTodo);
+            });*/
 
         }
         return false;
@@ -122,50 +138,9 @@ function newBoard() {
     board.appendChild(deleteAllThatSelected);
 
     name.addEventListener('dblclick', handlerForEditingBoard);
-    function handlerForEditingBoard(event) {
-        var el = event.target;
-        el.style.display = 'none';
-        var editLabel = document.createElement('input');
-        editLabel.type = 'text';
-        editLabel.className = 'edit-name-of-board';
-        editLabel.value = el.textContent;
-        event.target.parentNode.insertBefore(editLabel, event.target.parentNode.querySelector('.creating-todo')).focus();
-        editLabel.addEventListener('keypress', function(e) {
-            if (e.keyCode == 13 && editLabel.value !== '') {
-                el.textContent = data.name[currentId] = editLabel.value;
-                editLabel.parentNode.removeChild(editLabel);
-                el.style.display = 'block';
-                save();
-            }
-        });
-    }
-
     deleteBoard.addEventListener('click', handlerForDeletingBoard);
-    function handlerForDeletingBoard(event) {
-        event.target.parentNode.remove();
-        data.id.splice(currentId, currentId + 1);
-        data.name.splice(currentId, currentId + 1);
-        data.todo.splice(currentId, currentId + 1);
-        save();
-    }
-
     creatingTodo.addEventListener('keydown', handlerForCreatingTodo);
-    function handlerForCreatingTodo(event) {
-        if (event.keyCode == 13 && event.target.value !== '') {
-            var currentCreatingTodo = event.target;
-            newTodo(currentCreatingTodo, currentId);
-        }
-    }
-
     deleteAllThatSelected.addEventListener('click', handlerForDeletionAllThatSelected);
-    function handlerForDeletionAllThatSelected(event) {
-        var currentBoard = event.target.parentNode.getElementsByTagName('ul')[0];
-        while (currentBoard.querySelector(':checked') !== null) {
-            currentBoard.querySelector(':checked').nextElementSibling.nextElementSibling.click();
-        }
-        save();
-    }
-
     document.getElementById('maden-boards').appendChild(board);
 
     data.todo[currentId] = {
@@ -176,8 +151,8 @@ function newBoard() {
     save();
 }
 
-function newTodo(currentCreatingTodo, currentIdOfTodo) {
-    var newId;
+function newTodo(currentCreatingTodo, numberOfTodo) {
+    currentIdOfTodo = numberOfTodo;
     if (data.todo[currentIdOfTodo].id.length) {
         var size = data.todo[currentIdOfTodo].id.length;
         newId = data.todo[currentIdOfTodo].id[size - 1] + 1;
@@ -191,6 +166,7 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
         check = document.createElement('input'),
         todo = document.createElement('p'),
         btn = document.createElement('input');
+    li.id = 'Todo# ' + newId;
     mark.type = 'button';
     mark.className = 'mark-done';
     check.type = 'checkbox';
@@ -198,49 +174,14 @@ function newTodo(currentCreatingTodo, currentIdOfTodo) {
     todo.textContent = currentCreatingTodo.value;
     currentCreatingTodo.value = '';
     todo.className = 'name-of-todo';
-
-    todo.addEventListener('dblclick', function(event) {
-        var el = event.target;
-        el.style.display = 'none';
-        var editLabel = document.createElement('input');
-        editLabel.type = 'text';
-        editLabel.className = 'edit-name-of-todo';
-        editLabel.value = el.textContent;
-        el.parentNode.insertBefore(editLabel, el.parentNode.querySelector('.delete-todo')).focus();
-        editLabel.addEventListener('keypress', function(e) {
-            if (e.keyCode == 13 && editLabel.value !== '') {
-                el.textContent = data.todo[currentIdOfTodo].text[newId] = editLabel.value;
-                editLabel.parentNode.removeChild(editLabel);
-                el.style.display = 'inline-block';
-                save();
-            }
-        });
-    });
-
+    todo.addEventListener('dblclick', handlerForEditingTodo);
     data.todo[currentIdOfTodo].text.push(todo.textContent);
     data.todo[currentIdOfTodo].isMarked.push(false);
-
-    mark.addEventListener('click', function (event) {
-        var target = event.target.parentNode.getElementsByTagName('p')[0];
-        target.className = target.className !== 'name-of-todo marked-todo' ? 'name-of-todo marked-todo' : 'name-of-todo';
-        data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
-        save();
-    });
-
+    mark.addEventListener('click', handlerForMarkingTodo);
     btn.type = 'button';
     btn.value = 'X';
     btn.className = 'delete-todo';
-
-    btn.addEventListener('click', function (event) {
-        var target = event.target,
-            parent = target.parentNode;
-        parent.parentNode.removeChild(parent);
-
-        data.todo[currentIdOfTodo].id.splice(newId, newId + 1);
-        data.todo[currentIdOfTodo].text.splice(newId, newId + 1);
-        data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
-        save();
-    });
+    btn.addEventListener('click', handlerForDeletionTodo);
 
     li.appendChild(mark);
     li.appendChild(check);
@@ -276,4 +217,76 @@ document.getElementById('clear-storage').addEventListener('click', function() {
 function getId(str) {
     var numberStr = str.slice(6);
     return parseInt(numberStr);
+}
+
+//handlers
+function handlerForEditingBoard(event) {
+    var el = event.target;
+    el.style.display = 'none';
+    var editLabel = document.createElement('input');
+    editLabel.type = 'text';
+    editLabel.className = 'edit-name-of-board';
+    editLabel.value = el.textContent;
+    event.target.parentNode.insertBefore(editLabel, event.target.parentNode.querySelector('.creating-todo')).focus();
+    editLabel.addEventListener('keypress', function(e) {
+        if (e.keyCode == 13 && editLabel.value !== '') {
+            el.textContent = data.name[currentId] = editLabel.value;
+            editLabel.parentNode.removeChild(editLabel);
+            el.style.display = 'block';
+            save();
+        }
+    });
+}
+function handlerForDeletingBoard(event) {
+    event.target.parentNode.remove();
+    data.id.splice(currentId, currentId + 1);
+    data.name.splice(currentId, currentId + 1);
+    data.todo.splice(currentId, currentId + 1);
+    save();
+}
+function handlerForCreatingTodo(event) {
+    if (event.keyCode == 13 && event.target.value !== '') {
+        var currentCreatingTodo = event.target;
+        newTodo(currentCreatingTodo, currentId);
+    }
+}
+function handlerForDeletionAllThatSelected(event) {
+    var currentBoard = event.target.parentNode.getElementsByTagName('ul')[0];
+    while (currentBoard.querySelector(':checked') !== null) {
+        currentBoard.querySelector(':checked').nextElementSibling.nextElementSibling.click();
+    }
+    save();
+}
+function handlerForEditingTodo(event) {
+    var el = event.target;
+    el.style.display = 'none';
+    var editLabel = document.createElement('input');
+    editLabel.type = 'text';
+    editLabel.className = 'edit-name-of-todo';
+    editLabel.value = el.textContent;
+    el.parentNode.insertBefore(editLabel, el.parentNode.querySelector('.delete-todo')).focus();
+    editLabel.addEventListener('keypress', function(e) {
+        if (e.keyCode == 13 && editLabel.value !== '') {
+            el.textContent = data.todo[currentIdOfTodo].text[newId] = editLabel.value;
+            editLabel.parentNode.removeChild(editLabel);
+            el.style.display = 'inline-block';
+            save();
+        }
+    });
+}
+function handlerForMarkingTodo(event) {
+    var target = event.target.parentNode.getElementsByTagName('p')[0];
+    target.className = target.className !== 'name-of-todo marked-todo' ? 'name-of-todo marked-todo' : 'name-of-todo';
+    data.todo[currentIdOfTodo].isMarked[newId] = !data.todo[currentIdOfTodo].isMarked[newId];
+    save();
+}
+function handlerForDeletionTodo(event) {
+    var target = event.target,
+        parent = target.parentNode;
+    parent.parentNode.removeChild(parent);
+
+    data.todo[currentIdOfTodo].id.splice(newId, newId + 1);
+    data.todo[currentIdOfTodo].text.splice(newId, newId + 1);
+    data.todo[currentIdOfTodo].isMarked.splice(newId, newId + 1);
+    save();
 }
