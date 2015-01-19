@@ -42,6 +42,7 @@ function newBoard() {
         list = document.createElement('ul'),
         deleteAllThatSelected = document.createElement('input');
     board.className = 'board';
+    board.id = currentId;
 
     board.draggable = true;
     board.addEventListener('dragstart', function(e) {
@@ -73,7 +74,17 @@ function newBoard() {
         if (dragSrcEl != board) {
             dragSrcEl.innerHTML = board.innerHTML;
             board.innerHTML = e.dataTransfer.getData('text/html');
-            //TODO - add reactions to new elements
+
+            var tempId = dragSrcEl.id;
+            dragSrcEl.id = board.id;
+            board.id = tempId;
+
+            currentId = dragSrcEl.id;
+            dragSrcEl.addEventListener('dblclick', editingBoard);
+
+            currentId = board.id;
+            board.addEventListener('dblclick', editingBoard);
+
         }
         return false;
     });
@@ -103,14 +114,15 @@ function newBoard() {
     board.appendChild(creatingTodo);
     board.appendChild(list);
     board.appendChild(deleteAllThatSelected);
-    name.addEventListener('dblclick', function(event) {
+    name.addEventListener('dblclick', editingBoard);
+    function editingBoard(event) {
         var el = event.target;
         el.style.display = 'none';
         var editLabel = document.createElement('input');
         editLabel.type = 'text';
         editLabel.className = 'edit-name-of-board';
         editLabel.value = el.textContent;
-        board.insertBefore(editLabel, board.querySelector('.creating-todo')).focus();
+        event.target.parentNode.insertBefore(editLabel, event.target.parentNode.querySelector('.creating-todo')).focus();
         editLabel.addEventListener('keypress', function(e) {
             if (e.keyCode == 13 && editLabel.value !== '') {
                 el.textContent = data.name[currentId] = editLabel.value;
@@ -119,7 +131,7 @@ function newBoard() {
                 save();
             }
         });
-    });
+    }
     deleteBoard.addEventListener('click', function(event) {
         event.target.parentNode.remove();
         data.id.splice(currentId, currentId + 1);
